@@ -62,12 +62,7 @@ app.get('/', (req, res) => {
 
 app.get("/orderInfo", async (req, res) => {
   const orderDetails = await Order.find({});
-  const html = `
-    <ul>
-        ${orderDetails.map((item) => `<li>${item}</li>`)}
-    </ul>
-  `
-  res.send(html);
+  res.json(orderDetails);
 });
 
 app.post("/orderDetails", async (req, res) => {

@@ -1,10 +1,14 @@
+require('dotenv').config()
 const express = require("express");
 const mongoose = require("mongoose");
 const app = express();
 
+const PORT = process.env.PORT || 3000
+console.log(PORT)
+
 // MongoDB Connection
 mongoose
-  .connect("mongodb://127.0.0.1:27017/restaurent")
+  .connect(process.env.MONGO_URL)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log(err));
 
@@ -94,4 +98,4 @@ app.post("/orderDetails", async (req, res) => {
   res.status(201).json({order});
 });
 
-app.listen(3000, () => console.log("sever is runing"));
+app.listen(PORT, () => console.log("sever is runing"));
